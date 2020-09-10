@@ -1,0 +1,63 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>canvasExample</title>
+    <meta charset='utf-8' />
+</head>
+
+<body>
+    <canvas id="canvas" width="500" height="500"></canvas>
+    <script>
+        var canvas = document.getElementById("canvas");
+        var ctx = canvas.getContext("2d");
+        function roundRect(x, y, w, h, radius) {
+            var canvas = document.getElementById("canvas");
+            var ctx = canvas.getContext("2d");
+            var r = x + w;
+            var b = y + h;
+            ctx.beginPath();
+            ctx.strokeStyle = "black";
+            ctx.lineWidth = "4";
+            ctx.moveTo(x + radius, y);
+            ctx.lineTo(r - radius, y);
+            ctx.quadraticCurveTo(r, y, r, y + radius);
+            ctx.lineTo(r, y + h - radius);
+            ctx.quadraticCurveTo(r, b, r - radius, b);
+            ctx.lineTo(x + radius, b);
+            ctx.quadraticCurveTo(x, b, x, b - radius);
+            ctx.lineTo(x, y + radius);
+            ctx.quadraticCurveTo(x, y, x + radius, y);
+            ctx.stroke();
+        }
+
+        roundRect(10, 10, 410, 190, 20);
+
+        var grad = ctx.createLinearGradient(0, 0, 500, 200);
+        grad.addColorStop(0, "black");
+        grad.addColorStop(1, "white");
+        ctx.fillStyle = grad;
+        
+        for (i = 20; i < 385; i += 40) {
+            ctx.fillRect(i, 30, 30, 30);
+        }
+
+        ctx.fillRect(20, 70, 50, 30);
+        for (i = 80; i < 350; i += 40) {
+            ctx.fillRect(i, 70, 30, 30);
+        }
+        ctx.fillRect(360, 70, 50, 30);
+
+        ctx.fillRect(20, 110, 70, 30);
+        for (i = 100; i < 320; i += 40) {
+            ctx.fillRect(i, 110, 30, 30);
+        }
+        ctx.fillRect(340, 110, 70, 30);
+
+        ctx.fillRect(20, 150, 70, 30);
+        ctx.fillRect(100, 150, 230, 30)
+        ctx.fillRect(340, 150, 70, 30)
+    </script>
+</body>
+
+</html>
